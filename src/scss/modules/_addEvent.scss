@@ -1,0 +1,186 @@
+.wrapperEventAdd {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    #eventAdd {
+        margin-top: 50px;
+
+        input {
+            height: 30px;
+            width: 100%;
+            // padding: 12px 40px;
+            margin: 8px 0 0 0;
+            box-sizing: border-box;
+            border: 1px solid #EAEAEB;
+            border-radius: 2px;
+            background: #F7F8F9
+        }
+
+        h2 {
+            color: $mainGrey;
+            font: $fontMain;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin-bottom: -5px;
+        }
+
+        button {
+            width: 100px;
+            align-self: flex-end;
+            display: block;
+            width: 160px;
+            height: 30px;
+            background: #FF4C00;
+            border: 1px solid #EAEAEB;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 2px;
+
+        }
+
+        .eventAdd_coll:nth-child(1) {
+            margin-right: 20px;
+        }
+
+        .eventAdd_coll:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .eventAdd_wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        .eventAdd_coll {
+            width: 100%;
+
+            .eventAdd_validaty {
+                display: block;
+                height: 20px;
+                visibility: hidden;
+            }
+
+            input:invalid+.eventAdd_validaty {
+                visibility: visible;
+            }
+
+            .eventAdd__formDiscrioption {
+                margin-top: 10px;
+            }
+
+
+        }
+
+    }
+
+}
+
+.wrapperEventList {
+    width: 1000px;
+    // width: 100%;
+    margin: auto;
+    margin-top: 50px;
+
+
+    .selectDateWrapper {
+        display: flex;
+        justify-content: flex-end;
+
+        .selectContainer {
+            border: 1px solid #EAEAEB;
+            border-radius: 2px;
+            height: 30px;
+            width: 150px;
+            //  
+            overflow: hidden;
+            background: url(../img/icon/down-arrow.svg) no-repeat right #F7F8F9;
+
+            #selectDate {
+                background: transparent;
+                width: 170px;
+                line-height: 1;
+                border: 0;
+                height: 34px;
+                font-weight: 600;
+                padding-bottom: 3px;
+                padding-left: 3px;
+            }
+        }
+    }
+
+    #eventSchedule {
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+
+        .eventList {
+            max-width: 310px;
+            height: 330px;
+            width: 100%;
+            border: 1px solid #EAEAEB;
+            border-radius: 2px;
+            min-height: 50px;
+            // margin-top: 30px;
+            // padding-bottom: 40px;
+
+            .eventList_title {
+                background: #E5E5E5;
+                height: 30px;
+                margin-bottom: 20px;
+
+                .eventList_date {
+                    text-align: center;
+                    font-weight: 600;
+                    padding-top: 7px;
+                }
+            }
+
+            .eventRow {
+                display: flex;
+                justify-content: flex-end;
+                padding: 7px 10px 7px 10px;
+                //    margin: 10px 5px 10px 10px;
+
+                img {
+                    width: 13px;
+                    margin-left: 10px;
+                }
+
+                span:nth-child(3) {
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+
+                .eventRow_name {
+                    min-width: 150px;
+                }
+
+            }
+
+
+
+            .eventRow:nth-last-child(1) {
+                margin-bottom: 40px;
+            }
+        }
+
+        .eventList:nth-child(n-3) {
+            margin-top: 10px;
+        }
+
+        .eventList:nth-child(n+4) {
+            margin-top: 30px;
+        }
+    }
+
+
+}

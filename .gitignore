@@ -1,0 +1,26 @@
+# no .a files
+*.a
+#exemple
+# but do track lib.a, even though you're ignoring .a files above
+!lib.a
+
+# only ignore the root TODO file, not subdir/TODO
+/TODO
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+
+# ignore all .txt files in the doc/ directory
+doc/**/*.txt
+#
+
+
+
+# my ruls
+# ignore all files in the dist/ directory
+dist/
+
+# ignore all files in the dist/ directory
+node_modules/
+#
+
