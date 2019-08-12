@@ -1,6 +1,6 @@
 
-import myShow from './addEventDrow';
-console.log(myShow());
+import myShow from './_getElementNode';
+console.log(myShow);
 
 class EventRecording {
   constructor() {

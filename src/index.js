@@ -1,7 +1,12 @@
 
 // import some from './js/some';
 
-import './js/createEvent';
+// import './js/createEvent';
+
+import  {startFinishTimesCompare} from './js/compareStartFinishTime';
+
+import {formCheck} from './js/formProcessing';
+
 // import './js/getSet';
 
 import './css/style.css';
