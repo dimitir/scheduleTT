@@ -23,7 +23,7 @@
         </div>
 
         <section id="eventSchedule">
-             <div class="eventList">
+            <div class="eventList">
                 <div class="eventList_title">
                     <h3 class="eventList_date">21.08.2019</h3>
                 </div>
@@ -174,13 +174,13 @@
                     <span class="eventRow_delate"></span>
                 </div>
 
-            </div> 
+            </div>
         </section>
     </div>
     <div class="wrapperEventAdd">
         <section id="eventAdd">
             <h2>Добавить мероприятие</h2>
-            <form id = "addEvent" name="addEvent">
+            <form id="addEvent" name="addEvent">
                 <div class="eventAdd_wrapper">
                     <div class="eventAdd_coll">
 
@@ -190,6 +190,7 @@
                         <label for="timeStart" class="eventAdd__formDiscrioption">Время начала</label>
                         <input type="time" id="timeStart" name="timeStart" min="09:00" max="17:00">
                         <span class="eventAdd_validaty">От 9:00 до 17:00</span>
+
                     </div>
 
 
@@ -201,11 +202,16 @@
                         <label for="timeFinish" class="eventAdd__formDiscrioption">Время конца</label>
                         <input type="time" id="timeFinish" name="timeFinish" min="10:00" max="18:00">
                         <span class="eventAdd_validaty">От 10:00 до 18:00</span>
-                        <button type="submit" id="buttonAddEvent" data-timefinish="false" data-timestart="false">ДОБАВИТЬ</button>
 
                     </div>
-            </form>
+          
     </div>
+
+    <div id='eventAdd_buttonWrapper'>
+        <span class="eventAdd_warningBusyTime">This time is busy.  Choose another time!</span>
+        <button type="submit" id="buttonAddEvent" data-timefinish="false" data-timestart="false">ДОБАВИТЬ</button>
+    </div>
+</form>
     </section>
 
     </div>

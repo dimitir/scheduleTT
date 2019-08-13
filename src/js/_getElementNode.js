@@ -6,6 +6,7 @@ class GetElementNode {
     this.button = document.getElementById('buttonAddEvent');
     this.warningStartNode = timeStart.parentNode.querySelector('.eventAdd_validaty');
     this.warningFinishNode = timeFinish.parentNode.querySelector('.eventAdd_validaty');
+    this.warningBusyTime = document.querySelector('.eventAdd_warningBusyTime');
 
   }
 
@@ -17,6 +18,8 @@ class GetElementNode {
     objDomElem.button = this.button;
     objDomElem.warningStartNode = this.warningStartNode;
     objDomElem.warningFinishNode = this.warningFinishNode;
+    objDomElem.warningBusyTime = this.warningBusyTime;
+
     return objDomElem;
   }
 

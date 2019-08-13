@@ -2,17 +2,21 @@
 class IsTimeForEvent {
     constructor() {
     }
-    
+
     getAllEventList() {
         let listElement = document.querySelectorAll('.eventList');
         console.log(listElement);
         let commonDateStor = new Map();
         listElement.forEach(function (element) {
             let day = element.querySelector('.eventList_date').innerHTML;
+            console.log('day000', day);
+
             day = day.split('.');
             day = day.reverse();
             day = day.join(',');
             day = new Date(day).getTime();
+
+            console.log('day!', day);
 
             let eventRow = element.querySelectorAll('.eventRow');
             let storageEvents = new Map();
@@ -35,17 +39,34 @@ class IsTimeForEvent {
     }
 
 
+    checkBookedTime(curentStart, curentFinish, dateDay) {
+        curentStart = Number(curentStart);
+        curentFinish = Number(curentFinish);
+        dateDay = Number(dateDay);
 
 
+        console.log('dateDay', dateDay);
+        console.log(typeof curentStart);
+        console.log(typeof curentFinish);
+        let eventListAll = this.getAllEventList();
+        let start, finish;
+        console.log(eventListAll);
+        for (let entry of eventListAll) {
+            start = Number(entry[0]);
+            finish = Number(entry[1]);
 
-
-    checkBookedTime() {
-        for (let entry of eventList) {
-            console.log(entry[0], entry[1]);
-            // console.log( entry[0]);
+            if (curentStart < finish && curentFinish > start) {
+                return false;
+            }
         }
+        return true;
+
         // a.start < b.end AND a.end > b.start
-        return eventList;
     }
 
 }
+
+
+export let isTimeForEvent = new IsTimeForEvent();
+// export let existEvensTime = isTimeForEvent.getAllEventList();
+export let checkTimeBooked = isTimeForEvent.checkBookedTime();

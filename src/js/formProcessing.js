@@ -1,11 +1,13 @@
 import { compareTimes } from './compareStartFinishTime';
 import { elementList } from './_getElementNode';
+import { isTimeForEvent } from './_isTimeForEvent';
 
 
 class FormProcessing {
-    constructor(valuesTime, listElement) {
+    constructor(valuesTime, listElement, isEventTime) {
         this.compareTimesValues = valuesTime;
         this.elementsDom = listElement;
+        this.isEventTime = isEventTime;
     }
 
     formCheck() {
@@ -20,6 +22,8 @@ class FormProcessing {
 
             let dataTimeStart = this.elementsDom.button.dataset.timestart;
             let dataTimeFinish = this.elementsDom.button.dataset.timefinish;
+            console.log('Dts', dataTimeStart, dataTimeFinish);
+            console.log(typeof dataTimeFinish);
 
             let formData = new FormData(searchForm);
             formValues.fname = formData.get('fname');
@@ -27,14 +31,23 @@ class FormProcessing {
             dateEvent = dateEvent.split('-');
             dateEvent = dateEvent.join(',');
             formValues.dateEvent = new Date(dateEvent).getTime();
+            console.log(formValues.dateEvent);
+            let timeValues = this.compareTimesValues.getStartFinishTime();
+            formValues.timeStart = (timeValues.timeStartVal) + formValues.dateEvent;
+            formValues.timeFinish = (timeValues.timeFinishVal) + formValues.dateEvent;
 
-            let timeValues = compareTimesValues.getStartFinishTime();
-            formValues.timeStart = timeValues.timeStartVal;
-            formValues.timeFinish = timeValues.timeFinishVal;
+            if (dataTimeFinish === 'true' && dataTimeStart === 'true') {
+                let isFreeTime = this.isEventTime.checkBookedTime(formValues.timeStart, formValues.timeFinish, formValues.dateEvent);
+                if (isFreeTime === false) {
+                    this.elementsDom.warningBusyTime.style.display = 'block';
+                }
+                else {
+                    this.elementsDom.warningBusyTime.style.display = 'none';
+                    console.log('добавляем новое событие.');
+                    // 
+                }
 
-            if (dataTimeFinish === true && dataTimeStart === true) {
-                // console.log(formValues);
-
+                // isTimeForEvent   && (dataTimeStart == true)
                 //  run check _similarTime
                 // run drow
                 // console.log(fname, dateEvent, timeFinish, timeStart);
@@ -55,5 +68,5 @@ class FormProcessing {
 
 }
 
-let processingForm = new FormProcessing(compareTimes, elementList)
+let processingForm = new FormProcessing(compareTimes, elementList, isTimeForEvent)
 export let formCheck = processingForm.formCheck();
