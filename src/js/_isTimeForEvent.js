@@ -3,20 +3,67 @@ class IsTimeForEvent {
     constructor() {
     }
 
+    eventListForDays() {
+        let listElement = document.querySelectorAll('.eventList');
+        let dateStor = {};
+        listElement.forEach((element) => {
+            let day = element.querySelector('.eventList_date').innerHTML;
+            day = day.split('.');
+            day = day.reverse();
+            day = day.join(',');
+            day = new Date(day).getTime();
+
+
+            let eventRow = element.querySelectorAll('.eventRow');
+            let oneDateStor = {};
+            eventRow.forEach((line) => {
+
+
+                // !
+                let nameEvent = line.querySelector('.eventRow_name').innerHTML;
+                let startEvent = line.querySelector('.eventRow_start').innerHTML;
+                startEvent = startEvent.split(':');
+                startEvent = startEvent[0] * 60 + Number(startEvent[1]);
+                startEvent = startEvent + day;
+
+                let finishEvent = line.querySelector('.eventRow_finish').innerHTML;
+                finishEvent = finishEvent.split(':');
+                finishEvent = finishEvent[0] * 60 + +finishEvent[1];
+                finishEvent = finishEvent + day;
+
+                oneDateStor[startEvent] = finishEvent;
+                // storageEvents.set(startEvent, finishEvent);
+
+
+            });
+            if (day in dateStor) {
+
+                let temp = dateStor[day];
+                console.log(dateStor);
+                // console.log(oneDateStor);
+
+                dateStor[day] = { ...temp, ...oneDateStor };
+                // oneDateStor = Object.assign(obj1, obj2);
+            }
+            else {
+                dateStor[day] = oneDateStor;
+            }
+        });
+        return dateStor;
+    }
+
+    // not use new
     getAllEventList() {
         let listElement = document.querySelectorAll('.eventList');
-        console.log(listElement);
         let commonDateStor = new Map();
-        listElement.forEach(function (element) {
+        listElement.forEach(function () {
             let day = element.querySelector('.eventList_date').innerHTML;
-            console.log('day000', day);
 
             day = day.split('.');
             day = day.reverse();
             day = day.join(',');
             day = new Date(day).getTime();
 
-            console.log('day!', day);
 
             let eventRow = element.querySelectorAll('.eventRow');
             let storageEvents = new Map();
@@ -45,28 +92,26 @@ class IsTimeForEvent {
         dateDay = Number(dateDay);
 
 
-        console.log('dateDay', dateDay);
-        console.log(typeof curentStart);
-        console.log(typeof curentFinish);
-        let eventListAll = this.getAllEventList();
-        let start, finish;
-        console.log(eventListAll);
-        for (let entry of eventListAll) {
-            start = Number(entry[0]);
-            finish = Number(entry[1]);
+        let eventListAll = this.eventListForDays();
+        if (dateDay in eventListAll) {
+            let start, finish;
 
-            if (curentStart < finish && curentFinish > start) {
-                return false;
+            for (let entry in eventListAll[dateDay]) {
+                start = Number(entry);
+                finish = Number(eventListAll[dateDay][entry]);
+
+                if (curentStart < finish && curentFinish > start) {
+                    return false;
+                }
             }
         }
-        return true;
+        else return true;
 
         // a.start < b.end AND a.end > b.start
     }
-
 }
 
 
 export let isTimeForEvent = new IsTimeForEvent();
-// export let existEvensTime = isTimeForEvent.getAllEventList();
+export let daysEventList = isTimeForEvent.eventListForDays();
 export let checkTimeBooked = isTimeForEvent.checkBookedTime();

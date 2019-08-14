@@ -1,19 +1,21 @@
 import { compareTimes } from './compareStartFinishTime';
 import { elementList } from './_getElementNode';
 import { isTimeForEvent } from './_isTimeForEvent';
+// import { drowEvent } from './_eventDraw';
 
 
 class FormProcessing {
-    constructor(valuesTime, listElement, isEventTime) {
+    constructor(valuesTime, listElement, isEventTime, eventDraw) {
         this.compareTimesValues = valuesTime;
         this.elementsDom = listElement;
         this.isEventTime = isEventTime;
-    }
+        this.eventDraw = eventDraw;
+    }  
 
     formCheck() {
         let searchForm = document.forms["addEvent"];
-        let testVal = '2019,12,10';
-        var birthday = new Date(testVal).getTime();
+        // let testVal = '2019,12,10';
+        // let birthday = new Date(testVal).getTime();
         // console.log('birthday', birthday);
 
         searchForm.addEventListener('submit', () => {
@@ -38,13 +40,14 @@ class FormProcessing {
 
             if (dataTimeFinish === 'true' && dataTimeStart === 'true') {
                 let isFreeTime = this.isEventTime.checkBookedTime(formValues.timeStart, formValues.timeFinish, formValues.dateEvent);
-                if (isFreeTime === false) {
-                    this.elementsDom.warningBusyTime.style.display = 'block';
-                }
-                else {
+                if (isFreeTime === true) {
                     this.elementsDom.warningBusyTime.style.display = 'none';
                     console.log('добавляем новое событие.');
-                    // 
+                    // eventDraw.drawNewEvent(formValues);
+                    //  
+                }
+                else {
+                    this.elementsDom.warningBusyTime.style.display = 'block';
                 }
 
                 // isTimeForEvent   && (dataTimeStart == true)
@@ -68,5 +71,5 @@ class FormProcessing {
 
 }
 
-let processingForm = new FormProcessing(compareTimes, elementList, isTimeForEvent)
+let processingForm = new FormProcessing(compareTimes, elementList, isTimeForEvent); //, drowEvent
 export let formCheck = processingForm.formCheck();

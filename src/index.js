@@ -7,6 +7,8 @@ import  {startFinishTimesCompare} from './js/compareStartFinishTime';
 
 import {formCheck} from './js/formProcessing';
 
+// import {dayEventList} from './js/_isTimeForEvent';
+
 // import './js/getSet';
 
 import './css/style.css';

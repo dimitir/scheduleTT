@@ -1,5 +1,25 @@
-let a = 4;
+import { daysEventList } from './_isTimeForEvent'
 
-let show = () => a + 3;
+class EventDraw {
+    constructor(eventList) {
+        this.listEvents = eventList;
+    }
+    //  плюс нужна группировка по возрастанию
+    addEvent() {
+if
+    }
 
-export default show;
+
+
+    drawNewEvent(newEvent) {
+let newEventList = this.addEvent()
+
+
+    }
+
+
+
+}
+
+
+let drowEvent = new EventDraw(daysEventList);
